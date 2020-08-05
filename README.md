@@ -6,7 +6,7 @@ Developers are often tasked with creating interfaces that make it easy for non-d
 
 Design the following database schema containing three tables:
 
-![Database Schema](Assets/schema.png)
+![Database Schema](assets/schema.png)
 
 * **department**:
 
@@ -66,7 +66,7 @@ How do you deliver this? Here are some guidelines:
 
 * You will need to perform a variety of SQL JOINS to complete this assignment, and it's recommended you review the week's activities if you need a refresher on this.
 
-![Employee Tracker](Assets/employee-tracker.gif)
+![Employee Tracker](assets/employee-tracker.gif)
 
 ### Hints
 
