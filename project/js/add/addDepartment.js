@@ -1,25 +1,23 @@
 const inquirer = require("inquirer");
+const mysql = require("mysql");
 
-function addDepartment() {
+var init = require("./../init.js");
+
+module.exports = function (connection) {
+    console.log(connection.threadId);
     inquirer.prompt({
-        name: "option",
-        type: "list",
-        message: "What would you like to do?:",
-        choices: [
-            "Add Department",
-            "END"
-        ]
-    }).then(function (data = { option }) {
-        switch (data.option) {
-            case "Add Department":
-                // addDepartment();
-                console.log("tes1t")
-                break;
-
-            default:
-                break;
-        }
+        name: "newDepartment",
+        type: "input",
+        message: "What department would you like to add?:"
+    }).then(function (data = { newDepartment }) {
+        console.log(data.newDepartment)
+        connection.query(
+            `INSERT INTO departments (name) VALUES ("${data.newDepartment}");`,
+            function (err, res) {
+                if (err) throw err;
+                console.log(`Added New Department: ${data.newDepartment}`);
+                init(connection);
+            });
     });
-}
 
-module.exports = addDepartment();
+}
