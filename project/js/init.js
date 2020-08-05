@@ -4,7 +4,7 @@ const mysql = require("mysql");
 var addDepartment = require("./add/addDepartment.js");
 
 
-module.exports = function (connection) {
+function init(connection) {
     console.log(connection.threadId);
     inquirer.prompt({
         name: "option",
@@ -19,7 +19,7 @@ module.exports = function (connection) {
     }).then(function (data = { option }) {
         switch (data.option) {
             case "Add Department":
-                addDepartment(connection);
+                addDepartment(connection, init);
 
                 break;
 
@@ -35,3 +35,5 @@ module.exports = function (connection) {
         }
     });
 }
+
+module.exports = init;

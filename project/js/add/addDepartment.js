@@ -1,9 +1,9 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 
-var init = require("./../init.js");
+var init = require("../init.js");
 
-module.exports = function (connection) {
+function addDepartment(connection, init) {
     console.log(connection.threadId);
     inquirer.prompt({
         name: "newDepartment",
@@ -21,3 +21,5 @@ module.exports = function (connection) {
     });
 
 }
+
+module.exports = addDepartment;
