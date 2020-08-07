@@ -1,11 +1,11 @@
 // dependencies
 // const inquirer = require("inquirer");
 const mysql = require("mysql");
+const util = require("util");
 
 var init = require("./js/init.js");
 
 // var addDepartment = require("./js/add/addDepartment.js")
-
 
 // MySQL DB Connection Information
 const connection = mysql.createConnection({
@@ -16,6 +16,9 @@ const connection = mysql.createConnection({
     database: "company_db"
 });
 
+// connection.query = util.promisify(connection.query);
+
+
 // Initiate MySQL Connection.
 connection.connect(function (err) {
     if (err) {
@@ -23,10 +26,11 @@ connection.connect(function (err) {
         return;
     }
     console.log("connected as id " + connection.threadId);
-    console.log(connection.threadId);
+    console.log("server", connection.threadId);
     init(connection);
 });
 
+// module.exports = connection;
 
 // function init() {
 //     inquirer.prompt({

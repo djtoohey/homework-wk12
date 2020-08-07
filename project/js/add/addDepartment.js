@@ -1,10 +1,10 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 
-var init = require("../init.js");
+// var init = require("../init.js");
 
 function addDepartment(connection, init) {
-    console.log(connection.threadId);
+    console.log("addD");
     inquirer.prompt({
         name: "newDepartment",
         type: "input",

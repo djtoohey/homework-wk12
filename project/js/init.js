@@ -1,11 +1,12 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 
-var addDepartment = require("./add/addDepartment.js");
-
+// const connection = require("../server.js")
+const add = require("./add.js");
+const update = require("./update.js");
 
 function init(connection) {
-    console.log(connection.threadId);
+    console.log("init", connection.threadId);
     inquirer.prompt({
         name: "option",
         type: "list",
@@ -19,16 +20,20 @@ function init(connection) {
     }).then(function (data = { option }) {
         switch (data.option) {
             case "Add Department":
-                addDepartment(connection, init);
-
+                add.addDepartment(connection, init);
+                // init(connection)
+                // console.log("addD");
                 break;
 
             case "Add Role":
-                addRole(connection);
+                add.addRole(connection, init);
+                // console.log("addR");
                 break;
 
             case "Add Employee":
-                addEmployee(connection);
+                // console.log("addE");
+                add.addEmployee(connection, init);
+
                 break;
             default:
                 break;
