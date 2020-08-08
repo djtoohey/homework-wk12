@@ -126,13 +126,33 @@ function viewAllEmployees(connection, init, condition = "") {
 
     else {
         connection.query(queryString, function (err, employees) {
+            if (err) throw err;
             console.table(employees);
             init(connection);
         })
     }
 }
 
+function viewAll(connection, init, condition = "") {
+    let queryString = "SELECT * FROM ";
+    if (condition === "Departments") {
+        queryString += "departments";
+    }
+    else if (condition === "Roles") {
+        queryString += "roles";
+    }
+    else if (condition === "Managers") {
+        queryString += "employees where manager_id is Null";
+    }
+
+    connection.query(queryString, function (err, result) {
+        console.table(result);
+        init(connection);
+    })
+
+}
 
 module.exports = {
-    viewAllEmployees
+    viewAllEmployees,
+    viewAll
 };

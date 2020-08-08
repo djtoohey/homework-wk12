@@ -24,6 +24,7 @@ function init(connection) {
             "View All Employees By Role",
             "View All Departments",
             "View All Roles",
+            "View All Managers",
             "END"
         ]
     }).then(function (data = { option }) {
@@ -56,6 +57,16 @@ function init(connection) {
                 break;
             case "View All Employees By Manager":
                 view.viewAllEmployees(connection, init, "Manager");
+                break;
+
+            case "View All Managers":
+                view.viewAll(connection, init, "Managers");
+                break;
+            case "View All Departments":
+                view.viewAll(connection, init, "Departments");
+                break;
+            case "View All Roles":
+                view.viewAll(connection, init, "Roles");
                 break;
             default:
                 break;
