@@ -141,11 +141,6 @@ function updateEmployeeRole(connection, init) {
     })
 }
 
-// update employee role
-// update employee manager
-
-
-
 module.exports = {
     updateEmployeeManager,
     updateEmployeeRole,
