@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
+const cTable = require('console.table');
 
 function viewAllEmployees(connection, init, condition = "") {
     var queryString = `SELECT * FROM employees AS tOne 
@@ -88,7 +89,7 @@ function viewAllEmployees(connection, init, condition = "") {
 
         let managerName = [];
 
-        connection.query("SELECT * FROM employees where manager_id is NULL", function (err, managers) {
+        connection.query("SELECT * FROM employees", function (err, managers) {
             if (err) throw err;
 
             for (let i = 0; i < managers.length; i++) {
@@ -126,9 +127,22 @@ function viewAllEmployees(connection, init, condition = "") {
 
     else {
         connection.query(queryString, function (err, employees) {
+
+            console.log(employees);
+
             if (err) throw err;
-            console.table(employees);
-            init(connection);
+            connection.query("SELECT * FROM employees", function (err, managers) {
+                if (err) throw err;
+                let managerName;
+                for (let i = 0; i < managers.length; i++) {
+                    if (managers[i].employee_id === employees.manager_id) {
+                        managerName = managers[i].first_name + " " + managers[i].last_name;
+                    }
+                }
+
+                console.table(employees);
+                init(connection);
+            })
         })
     }
 }

@@ -5,9 +5,10 @@ const mysql = require("mysql");
 const add = require("./add.js");
 const update = require("./update.js");
 const view = require("./view.js");
+const remove = require("./remove.js");
+
 
 function init(connection) {
-    console.log("init", connection.threadId);
     inquirer.prompt({
         name: "option",
         type: "list",
@@ -29,6 +30,7 @@ function init(connection) {
         ]
     }).then(function (data = { option }) {
         switch (data.option) {
+
             case "Add Department":
                 add.addDepartment(connection, init);
                 break;
@@ -58,7 +60,6 @@ function init(connection) {
             case "View All Employees By Manager":
                 view.viewAllEmployees(connection, init, "Manager");
                 break;
-
             case "View All Managers":
                 view.viewAll(connection, init, "Managers");
                 break;
@@ -69,6 +70,7 @@ function init(connection) {
                 view.viewAll(connection, init, "Roles");
                 break;
             default:
+                process.exit(1);
                 break;
         }
     });

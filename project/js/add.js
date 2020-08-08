@@ -23,7 +23,7 @@ function addDepartment(connection, init) {
 }
 
 function addRole(connection, init) {
-    console.log("addRole", connection.threadId);
+
     var departmentNames = [];
     var roleNames = [];
 
