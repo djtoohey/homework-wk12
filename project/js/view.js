@@ -128,7 +128,6 @@ function viewAllEmployees(connection, init, condition = "") {
     else {
         connection.query(queryString, function (err, employees) {
 
-            console.log(employees);
 
             if (err) throw err;
             connection.query("SELECT * FROM employees", function (err, managers) {

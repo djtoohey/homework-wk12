@@ -33,7 +33,7 @@ function updateEmployeeManager(connection, init) {
                 {
                     name: "newManager",
                     type: "list",
-                    message: "Which employee do you want to set as manager for selected employee?",
+                    message: "Which employee do you want to set as manager for selected employee?:",
                     choices: managerList
                 }
 
@@ -104,7 +104,7 @@ function updateEmployeeRole(connection, init) {
                     {
                         name: "newRole",
                         type: "list",
-                        message: "Which role do you want to set as the role for selected employee?",
+                        message: "Which role do you want to set as the role for selected employee?:",
                         choices: roleList
                     }
 

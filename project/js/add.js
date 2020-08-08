@@ -141,7 +141,7 @@ function addEmployee(connection, init) {
                 }, {
                     name: "last_name",
                     type: "input",
-                    message: "What is the employee's last name"
+                    message: "What is the employee's last name?:"
                 }, {
                     name: "role",
                     type: "list",
