@@ -16,28 +16,28 @@ function init(connection) {
             "Add Role",
             "Add Employee",
             "Update Employee Manager",
+            "Update Employee Role",
             "END"
         ]
     }).then(function (data = { option }) {
         switch (data.option) {
             case "Add Department":
                 add.addDepartment(connection, init);
-                // init(connection)
-                // console.log("addD");
                 break;
 
             case "Add Role":
                 add.addRole(connection, init);
-                // console.log("addR");
                 break;
 
             case "Add Employee":
-                // console.log("addE");
                 add.addEmployee(connection, init);
-
                 break;
             case "Update Employee Manager":
                 update.updateEmployeeManager(connection, init);
+                break;
+            case "Update Employee Role":
+                update.updateEmployeeRole(connection, init);
+                break;
             default:
                 break;
         }

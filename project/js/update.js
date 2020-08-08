@@ -73,8 +73,73 @@ function updateEmployeeManager(connection, init) {
 
 function updateEmployeeRole(connection, init) {
     // UPDATE employees SET `first_name` = 'Dick' WHERE (`employee_id` = '8');
-}
+    const employeeList = [];
+    connection.query(`SELECT * FROM employees`, function (err, employees) {
+        if (err) throw err;
 
+        for (let i = 0; i < employees.length; i++) {
+            let employeeFullName = employees[i].first_name + " " + employees[i].last_name;
+            employeeList.push(employeeFullName);
+
+        }
+
+        inquirer.prompt([
+            {
+                name: "employee",
+                type: "list",
+                message: "Which employee's role do you want to update?:",
+                choices: employeeList
+            },
+        ]).then(function (employeePrompt = { employee }) {
+            const roleList = []
+
+            connection.query(`SELECT * FROM roles`, function (err, roles) {
+                if (err) throw err;
+
+                for (let i = 0; i < roles.length; i++) {
+                    roleList.push(roles[i].title);
+                }
+
+                inquirer.prompt([
+                    {
+                        name: "newRole",
+                        type: "list",
+                        message: "Which role do you want to set as the role for selected employee?",
+                        choices: roleList
+                    }
+
+                ]).then(function (rolePrompt = { newRole }) {
+
+                    let roleID;
+                    let employeeID;
+
+                    // role id
+                    for (let i = 0; i < roles.length; i++) {
+
+                        if (roles[i].title === rolePrompt.newRole) {
+                            roleID = roles[i].role_id;
+                        }
+                    }
+
+                    // employee id
+                    for (let i = 0; i < employees.length; i++) {
+                        let employeeFullName = employees[i].first_name + " " + employees[i].last_name;
+                        if (employeeFullName === employeePrompt.employee) {
+                            employeeID = employees[i].employee_id;
+                        }
+
+                    }
+
+                    connection.query(`UPDATE employees SET role_id = ${roleID} WHERE (employee_id = ${employeeID});`, function (err, employees) {
+                        if (err) throw err;
+                        console.log("Updated Employee's Role");
+                        init(connection);
+                    })
+                })
+            })
+        })
+    })
+}
 
 // update employee role
 // update employee manager
