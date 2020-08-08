@@ -131,7 +131,6 @@ function addEmployee(connection, init) {
                 let role = roles[i];
 
                 roleNames.push(role.title);
-                console.log(roleNames);
             }
 
             inquirer.prompt([

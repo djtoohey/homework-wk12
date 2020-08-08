@@ -15,6 +15,7 @@ function init(connection) {
             "Add Department",
             "Add Role",
             "Add Employee",
+            "Update Employee Manager",
             "END"
         ]
     }).then(function (data = { option }) {
@@ -35,6 +36,8 @@ function init(connection) {
                 add.addEmployee(connection, init);
 
                 break;
+            case "Update Employee Manager":
+                update.updateEmployeeManager(connection, init);
             default:
                 break;
         }
